@@ -1,0 +1,9 @@
+server:
+    port: 9000
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/wepay2?useSSL=false
+        username: root
+        password: XXXXXX
+    jpa:
+        generate-ddl: true

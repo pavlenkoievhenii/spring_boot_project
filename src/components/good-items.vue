@@ -23,18 +23,16 @@ export default {
     },
     methods: {
         http: function() {
-            this.$http.post('/api/getGood', {
+            this.$http.get('/api/getGood', {
                 pageSize: this.pageSize, pageNumber: this.pageNumer, keyword: this.keyword
             }).then(res => {
                 const data = res.data;
-                if (data.code === 2) {
                     this.$message({
                         type: 'info',
-                        message: data.msg
+                        message: "商品加载成功"
                     })
-                }
-                this.goods = data.data
-                this.total = Number.isInteger(data.msg) ?data.msg:0
+                this.goods = data
+                this.total = data.lenghth
             }).catch(err => {
             });
         },
