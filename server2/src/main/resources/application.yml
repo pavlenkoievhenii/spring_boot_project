@@ -4,6 +4,6 @@ spring:
     datasource:
         url: jdbc:mysql://localhost:3306/wepay2?useSSL=false
         username: root
-        password: XXXXXX
+        password: 1995628Zsc
     jpa:
         generate-ddl: true

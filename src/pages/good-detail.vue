@@ -43,27 +43,15 @@
                 updateRoute: ''
             }
         },
-        created() {
-            this.$http.get('/api/goodDetail/' + this.$route.params.id)
-                .then(res => {
-                    let code = res.data.code;
-                    if (code === 0) {
-                        this.good = res.data.result;
-                        this.updateRoute = '/update/' + this.good.id;
-                        this.good.price = price(this.good.price);
-                    } else {
-                        this.$message({
-                            type: 'error',
-                            message: res.data.msg
-                        });
-                    }
-                }).catch(error => {
-    
-                })
+        async created() {
+            const res = await this.$http.get('/api/goodDetail/' + this.$route.params.id)
+            this.good = res.data;
+            this.updateRoute = '/update/' + this.good.id;
+            this.good.price = price(this.good.price);
         },
         methods: {
             download: function() {
-                this.$http.get('/api/deleteGood/' + this.good.id).then(res => {
+                this.$http.post('/api/deleteGood/' + this.good.id).then(res => {
                     this.ifFeedback = true;
                     let type;
                     if (res.data.code === 0) {

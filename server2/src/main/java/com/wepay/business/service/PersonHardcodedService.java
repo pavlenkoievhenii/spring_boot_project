@@ -13,7 +13,7 @@ public class PersonHardcodedService {
 
     static {
         persons.add(new Person(++idCounter, "achao@qq.com", "016833"));
-        persons.add(new Person(++idCounter, "wyy", "950101"));
+        persons.add(new Person(++idCounter, "zy", "950101"));
     }
 
     public Person findByNameAndPassword(String name, String password) {

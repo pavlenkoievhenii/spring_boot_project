@@ -24,7 +24,7 @@ export default {
         },
         checkPwd: pwd => {
             let pwdReg = /^[\s\S]{3,18}$/;
-            pwd = pwd.trim();
+            pwd = pwd.trim()
             return pwdReg.test(pwd);
         },
         login: function() {

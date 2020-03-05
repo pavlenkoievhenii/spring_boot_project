@@ -62,51 +62,25 @@
 			'jsonUrl',
 			'id'
 		],
-		created() {
+		async created() {
 			if(this.jsonUrl.includes("update")) {
-            	this.$http.get('/api/goodDetail/' + this.$route.params.id)
-            	    .then(res => {
-            	        let code = res.data.code;
-            	        if (code === 0) {
-            	            this.good = res.data.result;
-            	            this.good.price = price(this.good.price);
-            	        } else {
-            	            this.$message({
-            	                type: 'error',
-            	                message: res.data.msg
-            	            });
-            	        }
-            	    }).catch(error => {
-            	    })
+				const res = await this.$http.get('/api/goodDetail/' + this.$route.params.id)
+            	this.good = res.data
+            	this.good.price = price(this.good.price);
 			}
 		},
 		methods: {
-			submit: function() {
+			submit: async function() {
 				this.good.img = this.$refs.imgUpload.img;
 				this.good.id = this.id;
-				this.$http.post(this.jsonUrl, this.good)
-					.then(res => {
-						const data = res.data;
-						if (data.code === 0) {
-							this.ifFeedback = true;
-							if(data.data){
-								this.route = '/good/'+data.data;
-							}else{
-								this.route = '/good/'+ this.id;
-							}
-							this.$message({
-								type: 'success',
-								message: data.msg
-							});
-						} else {
-							this.$message({ 
-								type: 'error',
-								message:data.msg
-								});
-						}
-					}).catch(err => {
-	
-					})
+				const res = await this.$http.post(this.jsonUrl, this.good)
+				const data = res.data;
+				this.ifFeedback = true;
+				if(data.data){
+					this.route = '/good/'+data.data;
+				}else{
+					this.route = '/good/'+ this.id;
+				}
 			},
 			toContinue: function() {
 				this.good.amount  =  this.good.price = 0;
