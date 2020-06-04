@@ -53,15 +53,9 @@
             download: function() {
                 this.$http.post('/api/deleteGood/' + this.good.id).then(res => {
                     this.ifFeedback = true;
-                    let type;
-                    if (res.data.code === 0) {
-                        type = 'success'
-                    } else {
-                        type = 'error'
-                    }
                     this.$message({
-                        type: type,
-                        message: res.data.msg
+                        type: 'success',
+                        message: '下架成功'
                     })    
                     setTimeout(() => {
                        this.$router.replace('/good')
