@@ -43,6 +43,7 @@
 <script>
 	import axios from 'axios'
 	import imgUpload from '@/components/img-upload'
+	import price from '../service/priceService'
 	export default {
 		data() {
 			return {
@@ -66,18 +67,18 @@
 			if(this.jsonUrl.includes("update")) {
 				const res = await this.$http.get('/api/goodDetail/' + this.$route.params.id)
             	this.good = res.data
-            	this.good.price = price(this.good.price);
+            	this.good.price = this.good.price;
 			}
 		},
 		methods: {
 			submit: async function() {
-				this.good.img = this.$refs.imgUpload.img;
+				this.good.img = this.$refs.imgUpload.imgURL;
 				this.good.id = this.id;
 				const res = await this.$http.post(this.jsonUrl, this.good)
 				const data = res.data;
 				this.ifFeedback = true;
-				if(data.data){
-					this.route = '/good/'+data.data;
+				if(data){
+					this.route = '/good/'+ data.id;
 				}else{
 					this.route = '/good/'+ this.id;
 				}

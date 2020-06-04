@@ -55,7 +55,7 @@
       handleAvatarSuccess(res, file) {
         const host = 'localhost';
         const port = '9111'
-        this.img = `http://${host}:${port}/${file.raw.name}`;
+        this.imgURL = `http://${host}:${port}/${res}`;
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
