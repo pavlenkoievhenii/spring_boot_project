@@ -1,6 +1,6 @@
-# This is a get-started project for Vue.js and Spring Boot
-# 这是一个前端使用Vue.js，后端使用Spring Boot的入门项目。
-# [简体中文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README.md) | [英文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README_EN.md)
+## This is a get-started project for Vue.js and Spring Boot
+## 这是一个前端使用Vue.js，后端使用Spring Boot的入门项目。
+## [简体中文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README.md) | [英文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README_EN.md)
 ## 安装
 ```
 cd Vue-Spring-Boot-Get-Started
