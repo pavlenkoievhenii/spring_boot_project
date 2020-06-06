@@ -1,103 +1,87 @@
-/*
- Navicat Premium Data Transfer
+-- MySQL dump 10.13  Distrib 8.0.20, for macos10.15 (x86_64)
+--
+-- Host: localhost    Database: wepay
+-- ------------------------------------------------------
+-- Server version	8.0.20
 
- Source Server         : wyy
- Source Server Type    : MySQL
- Source Server Version : 80018
- Source Host           : localhost:3306
- Source Schema         : wepay
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
- Target Server Type    : MySQL
- Target Server Version : 80018
- File Encoding         : 65001
+--
+-- Table structure for table `good`
+--
 
- Date: 02/11/2019 15:21:24
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for buyer
--- ----------------------------
-DROP TABLE IF EXISTS `buyer`;
-CREATE TABLE `buyer` (
-  `buyerId` int(11) NOT NULL,
-  `buyerName` varchar(255) DEFAULT NULL,
-  `buyerPassword` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phoneNumber` varchar(0) DEFAULT NULL,
-  `bankCard` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `balance` double(255,0) DEFAULT NULL,
-  `realName` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`buyerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for good
--- ----------------------------
 DROP TABLE IF EXISTS `good`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `good` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `price` double(10,2) NOT NULL,
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `amount` int(255) DEFAULT NULL,
+  `amount` int DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `soldAmount` int(255) DEFAULT '0',
-  `sellerId` int(11) DEFAULT NULL,
+  `soldAmount` int DEFAULT '0',
+  `sellerId` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `sellerId` (`sellerId`),
   CONSTRAINT `sellerId` FOREIGN KEY (`sellerId`) REFERENCES `seller` (`sellerId`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of good
--- ----------------------------
-BEGIN;
-INSERT INTO `good` VALUES (39, 'dasdsadsad', 0.00, 'http://localhost:9111/v2-86a93ff3ffb65d5b02abb4b183fa9967_hd.jpg', 'asdsadsadsa', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (40, 'g01', 0.00, 'http://localhost:9111/IMG_1218.JPG', 'zzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (41, 'g03', 0.00, 'http://localhost:9111/v2-76dc57fa773db19a7f220fea8e65478f_hd.jpg', 'zzzzzzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (42, 'g04', 0.00, 'http://localhost:9111/thread_207352205088017_20190828180950_s_2162796_o_w_2448_h_3264_44970.jpg', 'zzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (43, 'g05', 0.00, 'http://localhost:9111/WechatIMG342.jpeg', 'zzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (44, 'g06', 0.00, 'http://localhost:9111/WechatIMG344.jpeg', 'zzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (46, 'g08', 0.00, 'http://localhost:9111/v2-86a93ff3ffb65d5b02abb4b183fa9967_hd.jpg', 'zzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (47, 'g09', 0.00, 'http://localhost:9111/v2-86a93ff3ffb65d5b02abb4b183fa9967_hd.jpg', 'zzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (48, 'g10', 0.00, 'http://localhost:9111/v2-5a62af2c18f9a6d4715283857e3b7b58_hd.jpg', 'zzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (49, 'g11', 0.00, 'http://localhost:9111/2dccc409e04d0c8f0fc3cb84f69894b7.jpg', 'zzzzzz', 0, NULL, 0, NULL);
-INSERT INTO `good` VALUES (51, 'g12', 0.00, 'http://localhost:9111/v2-8d86d8d030dd2453fbc42a555338a9f2_hd.jpg', 'This is a description', 0, NULL, 0, NULL);
-COMMIT;
+--
+-- Dumping data for table `good`
+--
 
--- ----------------------------
--- Table structure for orders
--- ----------------------------
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-  `orderId` int(11) NOT NULL,
-  `buyerId` int(11) DEFAULT NULL,
-  `goodId` int(11) DEFAULT NULL,
-  `amount` varchar(255) DEFAULT NULL,
-  `unitPrice` decimal(10,2) DEFAULT NULL,
-  `orderStatus` varchar(255) DEFAULT NULL,
-  `orderTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`orderId`),
-  KEY `buyerId` (`buyerId`),
-  KEY `goodId` (`goodId`),
-  CONSTRAINT `buyerId` FOREIGN KEY (`buyerId`) REFERENCES `buyer` (`buyerId`),
-  CONSTRAINT `goodId` FOREIGN KEY (`goodId`) REFERENCES `good` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+LOCK TABLES `good` WRITE;
+/*!40000 ALTER TABLE `good` DISABLE KEYS */;
+INSERT INTO `good` VALUES (9,'1',0.00,'http://localhost:9111/v2-1f2f6cca66fede470ee1594e8ff72ac0_1440w.jpg','2',231,NULL,0,NULL),(39,'dasdsadsad',213.00,'http://localhost:9111/v2-1a68a489a3ca33910f9427b1d201349f_1440w.jpg','asdsadsadsa',312,NULL,0,NULL),(41,'g032',0.00,'http://localhost:9111/v2-4b821c8f099c7f03e5e51cb0c7a2ae55_b.jpg','zzzzzzzzzz',22,NULL,0,NULL),(42,'g04',0.00,'http://localhost:9111/v2-4acd4fd41cb9f71c3bc829964f1d5a40_1440w.jpg','zzzzz',0,NULL,0,NULL),(43,'g05',0.00,'http://localhost:9111/v2-1f2f6cca66fede470ee1594e8ff72ac0_1440w.jpg','zzzzz',0,NULL,0,NULL),(44,'g06',0.00,'http://localhost:9111/v2-4b821c8f099c7f03e5e51cb0c7a2ae55_b.jpg','zzzzzz',0,NULL,0,NULL),(46,'g08',0.00,'http://localhost:9111/v2-57dade700d3849b5e7a867792da727d4_b.jpg','zzzzzz',0,NULL,0,NULL),(47,'g09',0.00,'http://localhost:9111/v2-79e119716e82d906afc81aa943e40169_1440w.jpg','zzzzzz',0,NULL,0,NULL),(49,'g11',0.00,'http://localhost:9111/v2-85ec79d941f5ab81366d66898e46aa8d_b.jpg','zzzzzz',0,NULL,0,NULL),(51,'g12',0.00,'http://localhost:9111/v2-395e53c9f02576d67fe020432bff452c_1440w.jpg','This is a description',0,NULL,0,NULL);
+/*!40000 ALTER TABLE `good` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- ----------------------------
--- Table structure for seller
--- ----------------------------
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (10);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seller`
+--
+
 DROP TABLE IF EXISTS `seller`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `seller` (
-  `sellerId` int(11) NOT NULL,
+  `sellerId` int NOT NULL,
   `sellerName` varchar(255) DEFAULT NULL,
   `sellerPassword` varchar(255) DEFAULT NULL,
-  `balance` int(255) DEFAULT NULL,
+  `balance` int DEFAULT NULL,
   `bankCard` varchar(255) DEFAULT NULL,
   `realName` varchar(255) DEFAULT NULL,
   `phoneNumber` varchar(0) DEFAULT NULL,
@@ -107,12 +91,25 @@ CREATE TABLE `seller` (
   PRIMARY KEY (`sellerId`),
   KEY `sellerId` (`sellerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of seller
--- ----------------------------
-BEGIN;
-INSERT INTO `seller` VALUES (1, NULL, '$2a$10$x3f0Y2SNAmyAfqhKVAV.7uE7RHs3FDGuSYw.LlZhOFoyK7cjfZ.Q6', NULL, NULL, NULL, NULL, NULL, NULL, 'admin@qq.com');
-COMMIT;
+--
+-- Dumping data for table `seller`
+--
 
-SET FOREIGN_KEY_CHECKS = 1;
+LOCK TABLES `seller` WRITE;
+/*!40000 ALTER TABLE `seller` DISABLE KEYS */;
+INSERT INTO `seller` VALUES (1,NULL,'123',1,NULL,NULL,NULL,NULL,NULL,'admin@qq.com');
+/*!40000 ALTER TABLE `seller` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-06-06 20:50:22

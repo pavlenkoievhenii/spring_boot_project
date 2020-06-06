@@ -1,30 +1,29 @@
-This is get-started project for Vue.js and Node.js(Koa)
+This is get-started project for Vue.js and Spring Boot
 ## Installation
 ```
-cd Wepay-Business-System
+cd Vue-Spring-Boot-Get-Started
 # install dependencies
 npm install
 ```
 ## Usage
 #### Start your MySQL server
 #### MySQL Database configuration
-Create an empty database with the configuration below
-- Name: Wepay
-- Character Set: utf8
-- Collation: utf8_general_ci
+CREATE DATABASE IF NOT EXISTS wepay
+CHARACTER SET utf8
+COLLATE utf8_general_ci
 
 Import the data with SQL script
 
 ```
 mysql -u root -p wepay < doc/wepay.sql
 ```
-Modify database connection in `server/config/db.js`
+Modify database connection in `server/src/main/application.yml`
 ```
-const db = new Sequelize('mysql://root:XXXX@localhost/Wepay',{
-  define: {
-    timestamps: false
-  }
-})
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/wepay?useSSL=false
+        username: root
+        password: XXXXXX
 ```
 #### Run Front-End Page
 ```
@@ -42,3 +41,4 @@ sudo npm install -g http-server
 cd server/controller/images
 http-server -p  9111
 ```
+#### Access http://localhost:8080/
