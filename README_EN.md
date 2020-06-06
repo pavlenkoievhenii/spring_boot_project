@@ -1,5 +1,5 @@
 ## This is a get-started project for Vue.js and Spring Boot
-## [简体中文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README.md) | [英文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README_EN.md)
+## [简体中文](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README.md) | [English](https://github.com/AChaoZJU/Vue-Spring-Boot-Get-Started/blob/master/README_EN.md)
 ## Installation
 ```
 cd Vue-Spring-Boot-Get-Started
@@ -8,7 +8,7 @@ npm install
 ```
 ## Usage
 ### Start your MySQL server
-### MySQL Database configuration
+MySQL Database configuration
 Connect to your MySQL server, run the script below:
 ```
 CREATE DATABASE IF NOT EXISTS wepay
