@@ -33,21 +33,18 @@ export default {
             if (this.checkEmail(this.email) && this.checkPwd(this.pwd)) {
                 let obj = {
                     email: this.email,
-                    pwd: this.pwd
+                    sellerPassword:this.pwd
                 }
                 this.$http.post('/auth/seller', obj).then(res => {
                     const data = res.data;
-                    // if (data.code === 0) {
                         type = 'success';
                         message = '登录成功';
                         sessionStorage.setItem('wepay-token',data.token);
                         sessionStorage.setItem('wepay-email',data.email);
                         sessionStorage.setItem('wepay-sellerId',data.sellerId);
                         this.$router.push('/good');
-                    // }
                 }).catch((err) => {
-                    message = '系统故障';
-                    console.log(err);
+                    message = err.response.data
                 }).finally(()=>{
                     this.$message({
                     type: type,
