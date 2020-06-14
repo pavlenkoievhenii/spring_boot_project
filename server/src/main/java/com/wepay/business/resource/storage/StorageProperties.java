@@ -1,9 +1,8 @@
 package com.wepay.business.resource.storage;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@ConfigurationProperties("storage")
+@Component
 public class StorageProperties {
 
   /**
