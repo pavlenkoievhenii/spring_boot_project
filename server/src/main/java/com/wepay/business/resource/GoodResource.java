@@ -20,7 +20,6 @@ public class GoodResource {
 
   private final StorageService storageService;
 
-  @Autowired
   public GoodResource(StorageService storageService) {
     this.storageService = storageService;
   }
